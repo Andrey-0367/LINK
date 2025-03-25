@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .article {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .article h2 {
+            color: #333;
+        }
+        .article-content {
+            margin-top: 10px;
+        }
+        .article-content a {
+            color: #1a73e8; /* Синий цвет для ссылок */
+            text-decoration: underline;
+        }
+        .article-content a:hover {
+            color: #0d47a1;
+        }
+        .article-meta {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Последние статьи</h1>
+    
+    {% for article in articles %}
+    <div class="article">
+        <h2>{{ article.title }}</h2>
+        <div class="article-content">
+            {{ article.content|safe }}
+        </div>
+        <div class="article-meta">
+            Опубликовано: {{ article.created_at|date:"d.m.Y H:i" }}
+        </div>
+    </div>
+    {% empty %}
+    <p>Пока нет опубликованных статей.</p>
+    {% endfor %}
+</body>
+</html>
